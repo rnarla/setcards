@@ -30,6 +30,7 @@ end
 
 def horizontal
   silvercount = 0
+  save_me = Array.new
   @image.each_pixel do |pixel, col, row|
     if pixel.to_color == 'silver'
       silvercount = silvercount + 1
@@ -38,13 +39,31 @@ def horizontal
       silvercount = 0
     end
     if silvercount >= 940
-      puts [col, row].to_s
+      save_me.push(row)
       silvercount = 0
     end
   end
+  horiz_pairs(save_me)
 end
 
+def horiz_pairs(list)
+  coord_pairs = Array.new
+  list.each_with_index do |y_coord, i|
+    if i == 0
+      next
+    else
+      if y_coord - list[i-1] > 1
+        coord_pairs.push([list[i-1], y_coord])
+      end
+    end
+  end
+  puts coord_pairs
+  return coord_pairs
+end
+  
+  
+
 if __FILE__ == $0
-  #horizontal
-  vertical
+  horizontal
+  #vertical
 end
