@@ -16,14 +16,8 @@ def vertical
     if pixel.to_color == 'silver'
       silverflag = true
     elsif pixel.to_color == 'white' and silverflag
-      save_me.push([col, row])
+      save_me.push([col])
       silverflag = false
-    end
-    File.open("outputfile2", "r+") do |output|
-      save_me.each do |sublist|
-        output << sublist
-        output << "\n"
-      end
     end
   end
 end
@@ -57,7 +51,6 @@ def horiz_pairs(list)
       end
     end
   end
-  puts coord_pairs
   return coord_pairs
 end
   
