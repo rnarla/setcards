@@ -12,17 +12,19 @@ include Magick
 def left_edge
   save_me = Array.new
   silverflag = false
+  row_with_changes = nil
   @image.each_pixel do |pixel, col, row|
     if pixel.to_color == 'silver'
       silverflag = true
-    elsif pixel.to_color == 'white' and silverflag
-      if !save_me.include? col
-        save_me.push(col)
+    elsif silverflag
+      if (save_me.include? col)
+        puts "Dupe on row #{row}"
       end
+      save_me |= [col]
       silverflag = false
     end
   end
-  puts save_me.sort
+  return save_me.sort
 end
 
 def right_edge
@@ -38,7 +40,7 @@ def right_edge
       whiteflag = false
     end
   end
-  puts save_me
+  puts save_me.sort
 end
 
 def horizontal
@@ -77,7 +79,7 @@ end
 
 if __FILE__ == $0
   #horizontal
-  right_edge
-  puts "-----"
-  left_edge
+  puts left_edge
+  #puts "-----"
+  #left_edge
 end
