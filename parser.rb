@@ -9,17 +9,36 @@ include Magick
 #face.write("/Users/elanakoren/Documents/setcards/crop.png")
 
 
-def vertical
+def left_edge
   save_me = Array.new
   silverflag = false
   @image.each_pixel do |pixel, col, row|
     if pixel.to_color == 'silver'
       silverflag = true
     elsif pixel.to_color == 'white' and silverflag
-      save_me.push([col])
+      if !save_me.include? col
+        save_me.push(col)
+      end
       silverflag = false
     end
   end
+  puts save_me.sort
+end
+
+def right_edge
+  save_me = Array.new
+  whiteflag = false
+  @image.each_pixel do |pixel, col, row|
+    if pixel.to_color == 'white'
+      whiteflag = true
+    elsif pixel.to_color == 'silver' and whiteflag
+      if !save_me.include? col
+        save_me.push(col)
+      end
+      whiteflag = false
+    end
+  end
+  puts save_me
 end
 
 def horizontal
@@ -57,6 +76,8 @@ end
   
 
 if __FILE__ == $0
-  horizontal
-  #vertical
+  #horizontal
+  right_edge
+  puts "-----"
+  left_edge
 end
