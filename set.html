@@ -26,6 +26,10 @@ function get_initial_cards(card_nums) {
 	for (var i = 0; i < card_nums.length; i++) {
 		var newCard = document.createElement("img");
 		newCard.src = "/Users/elanakoren/Documents/setcards/cards/" + card_nums[i] + ".png"
+		if (i % 4 == 0) {
+			var br = document.createElement("br");
+			document.body.appendChild(br);
+		}
 		document.body.appendChild(newCard);
 	}
 }
