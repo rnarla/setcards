@@ -2,29 +2,37 @@
 <head>
 <script>
 
-function makeInitialArray() {
-	document.write("test");
-	var intial_array = [];
-	var used_cards = [];
-	document.write(initial_array.length)
-	while (initial_array.length < 12) {
-		var random_num = Math.floor(Math.random()*81)
-		document.write(random_num);
+var used_cards = [];
+
+function make_initial_array() {
+	var initial_array = new Array(12);
+	var card_count = 0
+	while (card_count < 12) {
+		var random_num = Math.floor(Math.random() * 81);
 		if (contains(random_num, used_cards)) {
 			continue;
 		}
 		else {
-			document.write(random_num)
 			used_cards.push(random_num);
 			initial_array.push(random_num);
+			card_count = card_count + 1;
 		}
 	}
-	return initial_array;
+	get_initial_cards(initial_array);
+}
+
+
+function get_initial_cards(card_nums) {
+	for (var i = 0; i < card_nums.length; i++) {
+		var newCard = document.createElement("img");
+		newCard.src = "/Users/elanakoren/Documents/setcards/cards/" + card_nums[i] + ".png"
+		document.body.appendChild(newCard);
+	}
 }
 
 function contains(num, cards) {
 	for (var i = 0; i < cards.length; i++) {
-		if (array[i] == num) {
+		if (cards[i] == num) {
 			return true;
 		}
 	}
@@ -32,8 +40,7 @@ function contains(num, cards) {
 }
 </script>
 </head>
-<body onload="makeInitialArray()">
-<h1>Hello World!</h1>
-</body>
+<body onload="make_initial_array()">
+</body>	
 </html>	
 
