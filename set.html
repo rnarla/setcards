@@ -1,50 +1,64 @@
 <html>
 <head>
-<script>
-
-var used_cards = [];
-
-function make_initial_array() {
-	var initial_array = [];
-	var card_count = 0
-	while (card_count < 12) {
-		var random_num = Math.floor(Math.random() * 81);
-		if (contains(random_num, used_cards)) {
-			continue;
-		}
-		else {
-			used_cards.push(random_num);
-			initial_array.push(random_num);
-			card_count = card_count + 1;
-		}
-	}
-	get_initial_cards(initial_array);
-}
-
-
-function get_initial_cards(card_nums) {
-	for (var i = 0; i < card_nums.length; i++) {
-		var newCard = document.createElement("img");
-		newCard.src = "/Users/elanakoren/Documents/setcards/cards/" + card_nums[i] + ".png"
-		if (i % 4 == 0) {
-			var br = document.createElement("br");
-			document.body.appendChild(br);
-		}
-		document.body.appendChild(newCard);
-	}
-}
-
-function contains(num, cards) {
-	for (var i = 0; i < cards.length; i++) {
-		if (cards[i] == num) {
-			return true;
-		}
-	}
-	return false;
-}
-</script>
 </head>
-<body onload="make_initial_array()">
+<div id ="cardarray">
+<body>
+	<script src="jquery-1.10.1.js"></script>
+	<script>
+	var used_cards = [];
+
+	function make_initial_array() {
+		var initial_array = [];
+		var card_count = 0
+		while (card_count < 12) {
+			var random_num = Math.floor(Math.random() * 81);
+			if (contains(random_num, used_cards)) {
+				continue;
+			}
+			else {
+				used_cards.push(random_num);
+				initial_array.push(random_num);
+				card_count = card_count + 1;
+			}
+		}
+		get_initial_cards(initial_array);
+	}
+
+
+	function get_initial_cards(card_nums) {
+		for (var i = 0; i < card_nums.length; i++) {
+			var newCard = document.createElement("img");
+			newCard.src = "/Users/elanakoren/Documents/setcards/cards/" + card_nums[i] + ".png"
+			if (i % 4 == 0) {
+				var br = document.createElement("br");
+				document.body.appendChild(br);
+			}
+			document.body.appendChild(newCard);
+		}
+	}
+
+	function contains(num, cards) {
+		for (var i = 0; i < cards.length; i++) {
+			if (cards[i] == num) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	$(document).ready(function() {
+			make_initial_array();
+			var click_counter = 0;
+			//$("img").on("click", function () { alert("test"); });
+			$("img").on("click", function() {
+				click_counter = click_counter + 1;
+				console.log(click_counter);
+			});
+	});
+	
+
+	</script>
+	</div>
 </body>	
 </html>	
 
