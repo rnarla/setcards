@@ -49,14 +49,13 @@
 	$(document).ready(function() {
 			make_initial_array();
 			var click_counter = 0;
-			//$("img").on("click", function () { alert("test"); });
-			$("img").on("click", function() {
+			var cards_clicked = [];
+			$("img").on("click", function(e) { // ask kale: what's w/ the 'e' param?
 				click_counter = click_counter + 1;
-				console.log(click_counter);
-			});
+				cards_clicked.push(e.currentTarget.src);
+				console.log(cards_clicked);
+			});	
 	});
-	
-
 	</script>
 	</div>
 </body>	
