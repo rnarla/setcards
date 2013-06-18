@@ -78,4 +78,12 @@ def print_hashlist()
   end
 end
 
-return @hashlist.to_json
+shape_classifier()
+number_classifier()
+filling_classifier()
+color_classifier()
+
+File.open("cards.json", "w") do |file|
+  file.puts(@hashlist.to_json)
+file.close      
+end
