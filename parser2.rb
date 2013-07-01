@@ -4,7 +4,7 @@ require 'pp'
 include Magick
 
 
-@image=Image.read("/Users/elanakoren/Documents/setcards/master.png").first
+@image=Image.read("master.png").first
 #face=image.crop!(270,55,194,194)
 #face.write("/Users/elanakoren/Documents/setcards/crop.png")
 
