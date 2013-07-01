@@ -8,7 +8,7 @@ require 'json'
 @hashlist = Hash.new
 
 def shape_classifier
-  Dir.foreach('/Users/elanakoren/Documents/setcards/cards') do |card|
+  Dir.foreach('cards') do |card|
     if card.split('.')[1] == 'png' # there are a few hidden files that aren't card images, ignore them
       card_num = Integer(card.split('.')[0])
       if card_num < 27
